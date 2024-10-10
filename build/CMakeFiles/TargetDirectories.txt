@@ -1,0 +1,3 @@
+C:/Users/Timofei/Sorts/build/CMakeFiles/main.dir
+C:/Users/Timofei/Sorts/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Timofei/Sorts/build/CMakeFiles/ZERO_CHECK.dir
