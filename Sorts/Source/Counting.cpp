@@ -1,8 +1,10 @@
 #include "../Header/SortClass.h"
 
-int Sorts::Counting(bool out) {
+std::vector<std::pair<std::pair<int, int>, double>> Sorts::Counting(bool out) {
     std::vector<int> dataCopy = this->data;
-    std::vector<int> numberCnt(this->numberLimit);
+    std::vector<int> numberCnt(this->numberLimit);  
+
+    std::vector<std::pair<std::pair<int, int>, double>> swaps;
 
     for (int i = 0; i < this->dataSize; ++i) {
         numberCnt[dataCopy[i]]++;
@@ -15,10 +17,5 @@ int Sorts::Counting(bool out) {
         }
     }
 
-    if (out) {
-        std::cout << "Counting sort:\n";
-        std::cout << "From: " << this->data << '\n';
-        std::cout << "To: " << dataCopy << '\n';
-    }
-    return 0;
+    return swaps;
 }

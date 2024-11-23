@@ -1,6 +1,9 @@
 #include "../Header/SortClass.h"
 
-int Sorts::Selection(bool out) {
+std::vector<std::pair<std::pair<int, int>, int>> Sorts::Selection(bool out, int timeout) {
+    auto START_SELECTION = std::chrono::high_resolution_clock::now();
+    std::vector<std::pair<std::pair<int, int>, int>> swaps;
+    swaps.clear();
     std::vector<int> dataCopy = this->data;
     for (size_t i = 0; i < this->dataSize; ++i) {
         size_t minIndex = i;
@@ -9,12 +12,8 @@ int Sorts::Selection(bool out) {
                 minIndex = j;
             }
         }
-        std::swap(dataCopy[minIndex], dataCopy[i]);
+        swaps.push_back({{minIndex, i}, swap_time(dataCopy[minIndex], dataCopy[i], START_SELECTION, timeout)});
     }
-    if (out) {
-        std::cout << "Selection sort:\n";
-        std::cout << "From: " << this->data << '\n';
-        std::cout << "To: " << dataCopy << '\n';
-    }
-    return 0;
+
+    return swaps;
 }

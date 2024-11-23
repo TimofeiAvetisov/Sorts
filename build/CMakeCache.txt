@@ -194,6 +194,9 @@ Sorts_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 Sorts_SOURCE_DIR:STATIC=C:/Users/Timofei/Sorts
 
+//Dependencies for the target
+sorts_module_LIB_DEPENDS:STATIC=general;C:/Users/Timofei/AppData/Local/Programs/Python/Python310/libs/python310.lib;
+
 
 ########################
 # INTERNAL cache entries

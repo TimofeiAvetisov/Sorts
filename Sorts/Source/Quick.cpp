@@ -1,5 +1,8 @@
 #include "../Header/SortClass.h"
 
+std::vector<std::pair<std::pair<int, int>, int>> swaps_quick;
+int TIMEOUT_QUICK = 1;
+auto START_QUICK = std::chrono::high_resolution_clock::now(); 
 
 int partition(std::vector<int> &vec, int low, int high) {
     int pivot = vec[high];
@@ -7,10 +10,10 @@ int partition(std::vector<int> &vec, int low, int high) {
     for (int j = low; j <= high - 1; j++) {
         if (vec[j] <= pivot) {
             i++;
-            std::swap(vec[i], vec[j]);
+            swaps_quick.push_back({{i, j}, swap_time(vec[i], vec[j], START_QUICK, TIMEOUT_QUICK)});
         }
     }
-    std::swap(vec[i + 1], vec[high]);
+    swaps_quick.push_back({{i + 1, high}, swap_time(vec[i + 1], vec[high], START_QUICK, TIMEOUT_QUICK)});
     return (i + 1);
 }
 
@@ -24,13 +27,11 @@ int QuickSort(std::vector<int> &vec, int low, int high) {
 }
 
 
-int Sorts::Quick(bool out) {
+std::vector<std::pair<std::pair<int, int>, int>> Sorts::Quick(bool out, int timeout) {
+    TIMEOUT_QUICK = timeout;
+    swaps_quick.clear();
     std::vector<int> dataCopy = this->data;
-    QuickSort(dataCopy, 0, this->dataSize);
-    if (out) {
-        std::cout << "Quick sort:\n";
-        std::cout << "From: " << this->data << '\n';
-        std::cout << "To: " << dataCopy << '\n';
-    }
-    return 0;
+    START_QUICK = std::chrono::high_resolution_clock::now();
+    QuickSort(dataCopy, 0, this->dataSize - 1);
+    return swaps_quick;
 }

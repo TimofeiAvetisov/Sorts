@@ -1,17 +1,16 @@
 #include "../Header/SortClass.h"
 
-int Sorts::Insertion(bool out) {
+std::vector<std::pair<std::pair<int, int>, int>> Sorts::Insertion(bool out, int timeout) {
+    auto start_time = std::chrono::high_resolution_clock::now();
+    std::vector<std::pair<std::pair<int, int>, int>> swaps;
+    swaps.clear();
+
     std::vector<int> dataCopy = this->data;
-    for (size_t i = 0; i < this->dataSize - 1; ++i) {
-        for (size_t j = i + 1; j > 0 && data[j] < data[j - 1]; --j) {
-            std::swap(data[j], data[j - 1]);
+    for (int i = 0; i < this->dataSize - 1; ++i) {
+        for (int j = i + 1; j > 0 && dataCopy[j] < dataCopy[j - 1]; --j) {
+            swaps.push_back({{j, j - 1}, swap_time(dataCopy[j], dataCopy[j - 1], start_time, timeout)});
         }
     }
-    if (out) {
-        std::cout << "Insertion sort:\n";
-        std::cout << "From: " << this->data << '\n';
-        std::cout << "To: " << dataCopy << '\n';
-    }
     
-    return 0;
+    return swaps;
 }

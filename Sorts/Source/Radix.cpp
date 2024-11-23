@@ -42,11 +42,6 @@ void RadixSort(std::vector<int>& data, int dataSize)
 int Sorts::Radix(bool out) {
     std::vector<int> dataCopy = this->data;
     RadixSort(dataCopy, this->dataSize);
-    if (out) {
-        std::cout << "Radix sort:\n";
-        std::cout << "From: " << this->data << '\n';
-        std::cout << "To: " << dataCopy << '\n';
-    }
 
     return 0;
 }

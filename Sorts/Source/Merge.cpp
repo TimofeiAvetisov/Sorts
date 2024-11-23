@@ -1,5 +1,8 @@
 #include "../Header/SortClass.h"
 
+auto START_TIME = std::chrono::high_resolution_clock::now(); 
+std::vector<std::pair<std::pair<int, int>, double>> swaps_merge;
+int TIMEOUT = 10;
 
 void MergeIntoOne(std::vector<int>& data, int left, int mid, int right) {
     int leftPointer, rightPointer, pointer;
@@ -49,13 +52,10 @@ void MergeSort(std::vector<int>& data, int left, int right) {
 }
 
 
-int Sorts::Merge(bool out) {
+std::vector<std::pair<std::pair<int, int>, double>> Sorts::Merge(bool out, int timeout) {
+    TIMEOUT = timeout;
+    START_TIME = std::chrono::high_resolution_clock::now();
     std::vector<int> dataCopy = this->data;
     MergeSort(dataCopy, 0, this->dataSize);
-    if (out) {
-        std::cout << "Merge sort:\n";
-        std::cout << "From: " << this->data << '\n';
-        std::cout << "To: " << dataCopy << '\n';
-    }
-    return 0;
+    return swaps_merge;
 }
